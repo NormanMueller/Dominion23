@@ -31,4 +31,3 @@ class Smithy(ActionCard):
 
     def __call__(self, player: Player):
         player.deck.draw(self.DRAWS)
-

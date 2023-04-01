@@ -3,6 +3,7 @@ from enum import Enum
 
 class UserInputException(Exception):
     """User Interrupt"""
+
     pass
 
 

@@ -15,7 +15,7 @@ class Field:
 
     @classmethod
     def return_fieldcard(
-        self, desired_card: BaseCard
+        self, desired_card: str
     ) -> Tuple[BaseCard | None, BoardError | None]:
         try:
             desired_card = self.__dict__[desired_card]

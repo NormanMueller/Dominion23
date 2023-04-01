@@ -3,7 +3,6 @@ from player.base_player import Player
 
 
 class ActionPhase:
-
     @staticmethod
     def play_card(player: Player, number_allowed_actions: int) -> None:
         try:
@@ -21,6 +20,6 @@ class ActionPhase:
                     number_allowed_actions -= 1
                 else:
                     continue
-        
+
         except UserInputException:
             pass

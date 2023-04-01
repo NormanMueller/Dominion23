@@ -13,13 +13,13 @@ class CardDeck:
         self.card_list = card_list
 
     def return_card(
-        self, desired_card: BaseCard
+        self, desired_card: str
     ) -> Tuple[BaseCard | None, BoardError | None]:
         try:
             desired_card = [
                 card for card in self.card_list if card.NAME == Cardname[desired_card]
             ]
-            return desired_card[0], None
+            return desired_card[0], BoardError.Empty
         except:
             print(f"{BoardError.NoMatch}  for {desired_card}")
             return None, BoardError.NoMatch
@@ -56,6 +56,8 @@ class HandCardDeck(CardDeck):
         ]
         if action_cards:
             return True
+        else:
+            return False
 
 
 class InPlayCardDeck(CardDeck):
