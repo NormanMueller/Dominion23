@@ -17,7 +17,6 @@ def test_return_card(empty_deck, card_copper):
 
 def test_return_card_nomatch(empty_deck, card_copper):
     # GIVEN
-    empty_deck.card_list = []
     # WHEN
     returned_card, error = empty_deck.return_card("Copper")
     # THEN
@@ -27,7 +26,6 @@ def test_return_card_nomatch(empty_deck, card_copper):
 
 def test_add(empty_deck, card_copper):
     # GIVEN
-    empty_deck.card_list = []
     # WHEN
     empty_deck.add(card_copper)
     # THEN
@@ -36,7 +34,7 @@ def test_add(empty_deck, card_copper):
 
 def test_discard(empty_deck, card_copper):
     # GIVEN
-    empty_deck.card_list = [card_copper]
+    empty_deck.card_list = [card_copper] * 1
     # WHEN
     empty_deck.discard(card_copper)
     # THEN
@@ -45,11 +43,7 @@ def test_discard(empty_deck, card_copper):
 
 @pytest.mark.parametrize(
     "hand_cards",
-    [
-        [Copper(), Copper(), Copper()],
-        [Estate(), Estate(), Estate()],
-        []
-    ],
+    [[Copper(), Copper(), Copper()], [Estate(), Estate(), Estate()], []],
 )
 def test_has_no_action_card(empty_hand_card_deck, hand_cards):
     # GIVEN

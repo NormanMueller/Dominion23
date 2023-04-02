@@ -26,10 +26,10 @@ def test_action_card(action_card_standard):
 
 def test_smithy(action_card_standard):
     # GIVEN
-    sut = Smithy()
+    smithy = Smithy()
     player = Player("norm", [Estate] * 3)
     # When
-    sut(player)
+    smithy(player)
     # Then
     assert action_card_standard.DISCARDS == 0
     assert action_card_standard.DELETES == 0

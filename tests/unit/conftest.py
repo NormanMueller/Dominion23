@@ -1,3 +1,4 @@
+from cards.actioncards.card_entitys import Smithy
 from cards.treasurecards.card_entitys import Copper
 from decks.decks import CardDeck, HandCardDeck
 from expansions.base_expansion import BaseExpansionField
@@ -13,6 +14,7 @@ from cards.utils.base_card import (
     Expansion,
 )
 from cards.actioncards.action_card import ActionCard, Draws
+from player.base_player import Player
 
 
 @pytest.fixture
@@ -51,3 +53,13 @@ def empty_hand_card_deck() -> HandCardDeck:
 @pytest.fixture
 def hand_cards() -> BaseCard:
     return []
+
+
+@pytest.fixture
+def player_with_smithy() -> Player:
+    return Player("Norman", [Smithy()] * 10)
+
+
+@pytest.fixture
+def player_with_copper() -> Player:
+    return Player("Norman", [Copper()] * 10)
