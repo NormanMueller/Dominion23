@@ -20,7 +20,6 @@ class BuyPhase:
     def buy_card(player: Player, board: Field, number_allowed_buys: int) -> None:
         try:
             while True:
-
                 if number_allowed_buys <= 0:
                     break
 

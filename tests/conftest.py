@@ -1,3 +1,7 @@
+import sys
+
+sys.path.append(r"c:\Users\norma\Github\Dominion2023")
+
 from cards.actioncards.card_entitys import Smithy
 from cards.treasurecards.card_entitys import Copper
 from decks.decks import CardDeck, HandCardDeck
@@ -63,3 +67,8 @@ def player_with_smithy() -> Player:
 @pytest.fixture
 def player_with_copper() -> Player:
     return Player("Norman", [Copper()] * 10)
+
+
+@pytest.fixture(scope="function")
+def base_expansion() -> CardDeck:
+    return BaseExpansionField()

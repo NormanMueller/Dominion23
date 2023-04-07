@@ -22,7 +22,6 @@ class Game:
 
     def start_game(self):
         for player in (self.player_one, self.player_two):
-
             # start turn
             player.deck.draw(nr=5)
 
