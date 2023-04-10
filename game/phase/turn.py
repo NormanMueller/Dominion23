@@ -32,7 +32,6 @@ class Turn(TurnProperties):
     def start_turn(player: Player) -> None:
         player.deck.draw(nr=5)
 
-
     @staticmethod
     def end_turn(player: Player):
         copy_cards = copy.copy(player.deck.hand_cards.card_list)
