@@ -26,7 +26,7 @@ def action_phase(default_card, player):
 
     with unittest.mock.patch("builtins.input", return_value=default_card):
         action_phase = ActionPhase()
-        action_phase.play_card(player, Turn())
+        action_phase.start_action_phase(player, Turn())
         return player
 
 

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class ActionPhase:
     @staticmethod
-    def play_card(player: Player, turn: Turn) -> None:
+    def start_action_phase(player: Player, turn: Turn) -> None:
         try:
             while True:
                 if turn.Actions <= 0:

@@ -24,7 +24,7 @@ class BuyPhase:
         return overall_money
 
     @staticmethod
-    def buy_card(player: Player, board: Field, turn: Turn) -> None:
+    def start_buy_phase(player: Player, board: Field, turn: Turn) -> None:
         try:
             while True:
                 if turn.Buys <= 0:

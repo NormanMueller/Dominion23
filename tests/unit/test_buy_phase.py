@@ -17,13 +17,13 @@ def test_calculate_available_money(player_with_copper: Player):
     assert return_value == 5
 
 
-def test_buy_card(player_with_copper: Player):
+def test_start_buy_phase(player_with_copper: Player):
     # GIVEN
     buy_phase = BuyPhase()
     player_with_copper.deck.draw(5)
 
     with unittest.mock.patch("builtins.input", return_value="Silver"):
         # WHEN
-        buy_phase.buy_card(player_with_copper, BaseExpansionField(), Turn())
+        buy_phase.start_buy_phase(player_with_copper, BaseExpansionField(), Turn())
     # THEN
     assert player_with_copper.deck.discard_pile.card_list == [Silver()] * 1

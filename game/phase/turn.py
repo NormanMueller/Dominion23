@@ -24,6 +24,10 @@ class Turn(TurnProperties):
     def end_turn(player: Player) -> None:
         player.deck.end_of_turn()
 
+    def new_turn(self):
+        self.Actions = Actions.ONE
+        self.Buys  = Buys.ONE
+
     def add_actions(self, nr: int) -> None:
         self.Actions += nr
 
