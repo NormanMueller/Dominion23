@@ -1,17 +1,20 @@
+from __future__ import annotations
 import sys
+from typing import TYPE_CHECKING
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 
-from phase.action_phase import ActionPhase
-from cards.treasurecards.card_entitys import Copper
+from game.phase.action_phase import ActionPhase
 from cards.victorycards.card_entitys import Estate
-from expansions.utils.field import Field
-from phase.buy_phase import BuyPhase
-from phase.turn import Turn
+
+from game.phase.buy_phase import BuyPhase
+from game.phase.turn import Turn
 from expansions.base_expansion import BaseExpansionField
 from player.base_player import Player
 from cards.actioncards.card_entitys import Smithy, Village
 
 
+if TYPE_CHECKING:
+    from expansions.utils.field import Field
 class Game:
     def __init__(
         self, player_one: Player, player_two: Player, field_cards: Field

@@ -1,11 +1,8 @@
 import sys
 
 import unittest.mock
-from game.game import Game
-
-#from player.base_player import Player
-#from game.phase.action_phase import ActionPhase
 from pytest_bdd import given, parsers, scenario, then, when
+from game.actual_game import Game, ActionPhase, Player
 
 
 @given(parsers.parse("Card is {default_card}"), target_fixture="card")
@@ -19,7 +16,7 @@ def player_with_cards(default_card, card):
     start_deck = [card] * 10
     player = Player("test", start_deck)
     player.deck.draw(5)
-    x = Game(player,player, start_deck)
+    x = Game(player,player,start_deck)
 
     return player
 

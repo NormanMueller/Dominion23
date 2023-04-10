@@ -3,13 +3,13 @@ from __future__ import annotations
 import itertools
 from typing import TYPE_CHECKING
 from expansions.utils.helper import UserInputException, get_user_input
-from expansions.utils.field import Field, BoardError
+from expansions.utils.field import  BoardError
 
 
 if TYPE_CHECKING:
     from game.phase.turn import Turn
     from player.base_player import Player
-
+    from expansions.utils.field import Field
 
 class BuyPhase:
     @staticmethod
