@@ -1,13 +1,19 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
 from expansions.utils.helper import BoardError, UserInputException, get_user_input
-from player.base_player import Player
+
+if TYPE_CHECKING:
+    from game.phase.turn import Turn
+    from player.base_player import Player
 
 
 class ActionPhase:
     @staticmethod
-    def play_card(player: Player, number_allowed_actions: int) -> None:
+    def play_card(player: Player, turn: Turn) -> None:
         try:
             while True:
-                if number_allowed_actions <= 0:
+                if turn.Actions <= 0:
                     break
                 print(
                     "You are in the 'action_phase' input cardname u wanna play, for skip press enter"
@@ -16,10 +22,10 @@ class ActionPhase:
                 desired_card = get_user_input()
                 action_card, error = player.deck.hand_cards.return_card(desired_card)
                 if error == BoardError.Empty:
-                    action_card(player)
+                    action_card(player, turn)
                     player.deck.cards_in_play.card_list.append(action_card)
                     player.deck.hand_cards.discard(action_card)
-                    number_allowed_actions -= 1
+                    turn.Actions -= 1
                 else:
                     continue
 

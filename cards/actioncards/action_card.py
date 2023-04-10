@@ -30,9 +30,25 @@ class Discards(IntFlag):
     THREE = 3
 
 
+class Actions(IntFlag):
+    ZERO = 0
+    ONE = 1
+    TWO = 2
+    THREE = 3
+
+
+class Buys(IntFlag):
+    ZERO = 0
+    ONE = 1
+    TWO = 2
+    THREE = 3
+
+
 @dataclass
 class ActionCard(BaseCard):
     # standard actions
     DRAWS: Draws = Draws.ZERO
     DELETES: Deletes = Deletes.ZERO
     DISCARDS: Discards = Discards.ZERO
+    ACTIONS: Actions = Actions.ZERO
+    BUYS: Buys = Buys.ZERO

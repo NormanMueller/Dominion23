@@ -8,7 +8,7 @@ from pytest_bdd import given, parsers, scenario, then, when
 
 @given(parsers.parse("Card is {default_card}"), target_fixture="card")
 def card_return(default_card, base_expansion):
-    card, error  = base_expansion.return_fieldcard(default_card)
+    card, error = base_expansion.return_fieldcard(default_card)
     return card
 
 

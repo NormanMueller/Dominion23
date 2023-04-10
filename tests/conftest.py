@@ -29,7 +29,6 @@ def action_card_standard() -> ActionCard:
         CardType.ACTIONCARD,
         CardMoney.ZERO,
         CardVictory.ZERO,
-        CardBuys.ZERO,
         Expansion.Dominion,
     )
 

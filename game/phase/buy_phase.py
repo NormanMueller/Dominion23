@@ -1,7 +1,14 @@
+from __future__ import annotations
+
 import itertools
+from typing import TYPE_CHECKING
 from expansions.utils.helper import UserInputException, get_user_input
 from expansions.utils.field import Field, BoardError
-from player.base_player import Player
+
+
+if TYPE_CHECKING:
+    from game.phase.turn import Turn
+    from player.base_player import Player
 
 
 class BuyPhase:
@@ -17,10 +24,10 @@ class BuyPhase:
         return overall_money
 
     @staticmethod
-    def buy_card(player: Player, board: Field, number_allowed_buys: int) -> None:
+    def buy_card(player: Player, board: Field, turn: Turn) -> None:
         try:
             while True:
-                if number_allowed_buys <= 0:
+                if turn.Buys <= 0:
                     break
 
                 print(
@@ -34,7 +41,7 @@ class BuyPhase:
 
                 if BuyPhase.calculate_available_money(player) >= card_from_field.PRICE:
                     player.deck.discard_pile.add(card_from_field)
-                    number_allowed_buys -= 1
+                    turn.Buys -= 1
                 else:
                     print(
                         f"not enough money to buy {desired_card}, choose new card or skip"

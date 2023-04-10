@@ -41,13 +41,6 @@ class CardVictory(IntFlag):
     EIGHT = 8
 
 
-class CardActions(IntFlag):
-    ZERO = 0
-    ONE = 1
-    TWO = 2
-    THREE = 3
-
-
 class Cardname(Enum):
     Copper = "Copper"
     Silver = "Silver"
@@ -57,13 +50,7 @@ class Cardname(Enum):
     Province = "Province"
     Smithy = "Smithy"
     Cellar = "Cellar"
-
-
-class CardBuys(IntFlag):
-    ZERO = 0
-    ONE = 1
-    TWO = 2
-    THREE = 3
+    Village = "Village"
 
 
 class Expansion(Enum):
@@ -81,7 +68,6 @@ class BaseCard:
     TYPE: CardType
     MONEY: CardMoney
     VICTORY: CardVictory
-    BUYS: CardBuys
     EXPANSION: Expansion
 
     def __post_init__(self):

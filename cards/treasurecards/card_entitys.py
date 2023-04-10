@@ -6,7 +6,6 @@ from cards.utils.base_card import CardType
 from cards.utils.base_card import CardMoney
 from cards.utils.base_card import CardVictory
 from cards.utils.base_card import Cardname
-from cards.utils.base_card import CardBuys
 from cards.utils.base_card import Expansion
 from cards.utils.base_card import BaseCard
 
@@ -21,7 +20,6 @@ class Copper(BaseCard):
             CardType.TREASURECARD,
             CardMoney.ONE,
             CardVictory.ZERO,
-            CardBuys.ZERO,
             Expansion.Dominion,
         )
 
@@ -36,7 +34,6 @@ class Silver(BaseCard):
             CardType.TREASURECARD,
             CardMoney.TWO,
             CardVictory.ZERO,
-            CardBuys.ZERO,
             Expansion.Dominion,
         )
 
@@ -51,6 +48,5 @@ class Gold(BaseCard):
             CardType.TREASURECARD,
             CardMoney.THREE,
             CardVictory.ZERO,
-            CardBuys.ZERO,
             Expansion.Dominion,
         )
