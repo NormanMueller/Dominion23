@@ -9,7 +9,6 @@ from expansions.base_expansion import BaseExpansionField
 import pytest
 from cards.utils.base_card import (
     BaseCard,
-    CardBuys,
     CardCost,
     CardMoney,
     CardType,
