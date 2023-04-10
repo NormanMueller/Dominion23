@@ -27,8 +27,8 @@ class PlayerCardDeck:
                 self.draw_pile = DrawCardDeck(self.discard_pile.card_list)
                 self.hand_cards.card_list.append(next(self.draw_pile.card_list))
 
-    def end_of_turn(self):
-        copy_cards = copy.copy(self.hand_cards.card_list)
-        for card in copy_cards:
-            self.hand_cards.discard(card)
-            self.discard_pile.add(card)
+    # def end_of_turn(self):
+    #     copy_cards = copy.copy(self.hand_cards.card_list)
+    #     for card in copy_cards:
+    #         self.hand_cards.discard(card)
+    #         self.discard_pile.add(card)
