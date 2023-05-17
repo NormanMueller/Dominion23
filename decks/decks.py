@@ -1,6 +1,8 @@
 import sys
 from typing import List, Tuple
 
+from expansions.utils.helper import UserInputException, get_user_input
+
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 import random
 from cards.utils.base_card import BaseCard, Cardname
@@ -24,11 +26,17 @@ class CardDeck:
             print(f"{BoardError.NoMatch}  for {desired_card}")
             return None, BoardError.NoMatch
 
-    def discard(self, card: BaseCard) -> None:
-        self.card_list.remove(card)
+    def discard(self, card: BaseCard | List[BaseCard]) -> None:
+        if  isinstance(card, list):
+            [self.card_list.remove(entity) for entity in card]
+        elif isinstance(card, str):
+            self.card_list.remove(card)
 
     def add(self, card: BaseCard) -> None:
-        self.card_list.append(card)
+        if  isinstance(card, list):
+            [self.card_list.append(entity) for entity in card]
+        elif isinstance(card, str):
+            self.card_list.append(card)
 
 
 class DiscardPile(CardDeck):

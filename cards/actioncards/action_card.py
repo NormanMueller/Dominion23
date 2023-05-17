@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from enum import IntFlag
 import sys
 
+from expansions.utils.helper import BoardError, UserInputException, get_user_input
+
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 from cards.utils.base_card import (
     BaseCard,
@@ -47,8 +49,9 @@ class Buys(IntFlag):
 @dataclass
 class ActionCard(BaseCard):
     # standard actions
-    DRAWS: Draws = Draws.ZERO
-    DELETES: Deletes = Deletes.ZERO
-    DISCARDS: Discards = Discards.ZERO
-    ACTIONS: Actions = Actions.ZERO
-    BUYS: Buys = Buys.ZERO
+    draws: Draws = Draws.ZERO
+    deletes: Deletes = Deletes.ZERO
+    discards: Discards = Discards.ZERO
+    actions: Actions = Actions.ZERO
+    buys: Buys = Buys.ZERO
+

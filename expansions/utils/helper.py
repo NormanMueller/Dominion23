@@ -13,8 +13,8 @@ class BoardError(Enum):
     NotAvailable = "Card Pile is Empty"
 
 
-def get_user_input() -> str:
-    user_input = input("Name Card")
+def get_user_input(txt: str = "Name Card") -> str:
+    user_input = input(txt)
     if len(user_input.strip()) > 0 and isinstance(user_input, str):
         return user_input
     else:

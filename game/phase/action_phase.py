@@ -21,10 +21,11 @@ class ActionPhase:
 
                 desired_card = get_user_input()
                 action_card, error = player.deck.hand_cards.return_card(desired_card)
+                
                 if error == BoardError.Empty:
-                    action_card(player, turn)
                     player.deck.cards_in_play.card_list.append(action_card)
                     player.deck.hand_cards.discard(action_card)
+                    action_card(player, turn)
                     turn.Actions -= 1
                 else:
                     continue

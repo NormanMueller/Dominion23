@@ -10,7 +10,7 @@ from game.phase.buy_phase import BuyPhase
 from game.phase.turn import Turn
 from expansions.base_expansion import BaseExpansionField
 from player.base_player import Player
-from cards.actioncards.card_entitys import Smithy, Village
+from cards.actioncards.card_entitys import Cellar, Smithy, Village
 
 
 if TYPE_CHECKING:
@@ -48,7 +48,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    start_cards = [Village()] * 7 + [Estate()] * 3
+    start_cards = [Cellar()] * 7 + [Estate()] * 3
     x = Game(
         Player("Norman", start_cards),
         Player("Nico", start_cards),
