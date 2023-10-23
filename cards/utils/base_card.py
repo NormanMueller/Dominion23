@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum, auto, IntFlag
 
@@ -51,7 +53,7 @@ class Cardname(Enum):
     Smithy = "Smithy"
     Cellar = "Cellar"
     Village = "Village"
-
+    Milts = "Milts"
 
 class Expansion(Enum):
     Dominion = "Dominion"
@@ -63,20 +65,27 @@ class Expansion(Enum):
 class BaseCard:
     """Base Card Image"""
 
-    NAME: Cardname
-    PRICE: CardCost
-    TYPE: CardType
-    MONEY: CardMoney
-    VICTORY: CardVictory
-    EXPANSION: Expansion
+    description: str
+    name: Cardname
+    price: CardCost
+    type: CardType
+    money: CardMoney
+    victory_points: CardVictory
+    expansion: Expansion
 
     def __post_init__(self):
         """Card types have different quantitys on the board"""
-        if self.TYPE == CardType.ACTIONCARD:
-            self.QUANTITY = 10
-        elif self.TYPE == CardType.VICTORYCARD and self.NAME != Cardname.Province:
-            self.QUANTITY = 20
-        elif self.NAME == Cardname.Province:
-            self.QUANTITY = 10
-        elif self.TYPE == CardType.TREASURECARD:
-            self.QUANTITY = 30
+        if self.type == CardType.ACTIONCARD:
+            self.quantity = 10
+        elif self.type == CardType.VICTORYCARD and self.name != Cardname.Province:
+            self.quantity = 20
+        elif self.name == Cardname.Province:
+            self.quantity = 10
+        elif self.type == CardType.TREASURECARD:
+            self.quantity = 30
+
+    def __eq__(self, other):
+        if self.name == other.name:
+            return True
+        else:
+            return False

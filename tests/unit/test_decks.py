@@ -2,7 +2,6 @@ import pytest
 from cards.actioncards.card_entitys import Smithy
 from cards.treasurecards.card_entitys import Copper
 from cards.victorycards.card_entitys import Estate
-from expansions.utils.helper import BoardError
 
 
 def test_return_card(empty_deck, card_copper):

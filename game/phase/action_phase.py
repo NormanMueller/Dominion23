@@ -1,34 +1,48 @@
 from __future__ import annotations
+import sys
+
+
+sys.path.append(r"c:\Users\norma\Github\Dominion2023")
+
+from game.phase.base_phase import BasePhase
+from cards.actioncards.action_card import ActionCard, ActionImpacts
+
 from typing import TYPE_CHECKING
 
-from expansions.utils.helper import BoardError, UserInputException, get_user_input
+from attr import dataclass
+from player.base_player import Player
+
+from utils.exceptions import UserInputException
+from utils.helper import phasen_decorator, player_phasen_information, user_input_handler
+
 
 if TYPE_CHECKING:
-    from game.phase.turn import Turn
-    from player.base_player import Player
+    from decks.decks import CardDeck
 
 
-class ActionPhase:
-    @staticmethod
-    def start_action_phase(player: Player, turn: Turn) -> None:
-        try:
-            while True:
-                if turn.Actions <= 0:
-                    break
-                print(
-                    "You are in the 'action_phase' input cardname u wanna play, for skip press enter"
-                )
+@dataclass
+class ActionPhase(BasePhase):
+    player: Player
+    opponent: Player
+    field_cards: CardDeck
 
-                desired_card = get_user_input()
-                action_card, error = player.deck.hand_cards.return_card(desired_card)
-                
-                if error == BoardError.Empty:
-                    player.deck.cards_in_play.card_list.append(action_card)
-                    player.deck.hand_cards.discard(action_card)
-                    action_card(player, turn)
-                    turn.Actions -= 1
-                else:
-                    continue
+    def condition_to_play(self) -> None:
+        if self.player.action_cards_in_hand == False or self.player.nr_actions <= 0:
+            return False
+        return True
 
-        except UserInputException:
-            pass
+    @phasen_decorator
+    def start_phase(self) -> None:
+        while self.condition_to_play() == True:
+            
+            player_phasen_information(self.player)
+            
+            action_card_to_play, error = user_input_handler(self.player.deck.hand_cards)
+            if error == UserInputException:
+                break
+
+            self.player.play_card(action_card_to_play)
+            action_card_to_play: ActionCard
+            action_card_to_play.execute(self.player, self.opponent, self.field_cards)
+
+            self.player.nr_actions -= 1

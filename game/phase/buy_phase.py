@@ -1,51 +1,41 @@
 from __future__ import annotations
-
-import itertools
+from dataclasses import dataclass
+import sys
 from typing import TYPE_CHECKING
-from expansions.utils.helper import UserInputException, get_user_input
-from expansions.utils.field import  BoardError
 
+
+sys.path.append(r"c:\Users\norma\Github\Dominion2023")
+
+from game.phase.base_phase import BasePhase
+from utils.exceptions import UserInputException
+from utils.helper import phasen_decorator, player_phasen_information, user_input_handler
 
 if TYPE_CHECKING:
-    from game.phase.turn import Turn
     from player.base_player import Player
-    from expansions.utils.field import Field
+    from decks.decks import CardDeck
 
-class BuyPhase:
-    @staticmethod
-    def calculate_available_money(player: Player) -> int:
-        overall_money = 0
-        # Money from Treasure Cards (from Hand) and Action Cards (which are in play)
-        for card in itertools.chain(
-            player.deck.hand_cards.card_list + player.deck.cards_in_play.card_list
-        ):
-            overall_money += card.MONEY
 
-        return overall_money
+@dataclass
+class BuyPhase(BasePhase):
+    player: Player
+    opponent: Player
+    field_cards: CardDeck
 
-    @staticmethod
-    def start_buy_phase(player: Player, board: Field, turn: Turn) -> None:
-        try:
-            while True:
-                if turn.Buys <= 0:
-                    break
+    def condition_to_play(self) -> None:
+        if self.player.nr_buys <= 0:
+            return False
+        return True
 
-                print(
-                    "You are in the 'buy_phase' input cardname u wanna buy, for skip press enter"
-                )
+    @phasen_decorator
+    def start_phase(self) -> None:
+        while self.condition_to_play() == True:
+            player_phasen_information(self.player)
+            card_from_field, error = user_input_handler(self.field_cards)
+            if error == UserInputException:
+                break
 
-                desired_card = get_user_input()
-                card_from_field, error = board.return_fieldcard(desired_card)
-                if error in [BoardError.NoMatch, BoardError.NotAvailable]:
-                    continue
-
-                if BuyPhase.calculate_available_money(player) >= card_from_field.PRICE:
-                    player.deck.discard_pile.add(card_from_field)
-                    turn.Buys -= 1
-                else:
-                    print(
-                        f"not enough money to buy {desired_card}, choose new card or skip"
-                    )
-
-        except UserInputException:
-            pass
+            if self.player.available_money >= card_from_field.price:
+                self.player.buy_card(card_from_field)
+                self.player.nr_buys -= 1
+            else:
+                print(f"not enough money to buy  choose new card")

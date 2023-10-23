@@ -3,7 +3,7 @@ from cards.treasurecards.card_entitys import Silver
 from expansions.base_expansion import BaseExpansionField
 
 from game.phase.buy_phase import BuyPhase
-from game.phase.turn import Turn
+from game.phase.start_phase import Turn
 from player.base_player import Player
 
 

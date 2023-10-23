@@ -2,7 +2,7 @@ import unittest.mock
 from cards.actioncards.card_entitys import Smithy
 
 from game.phase.action_phase import ActionPhase
-from game.phase.turn import Turn
+from game.phase.start_phase import Turn
 
 
 def test_start_action_phase(player_with_smithy):

@@ -1,4 +1,4 @@
-from expansions.utils.helper import BoardError
+from expansions.utils.custom_exceptions import BoardError
 
 
 def test_field_return_card(base_expansion_field, card_copper):

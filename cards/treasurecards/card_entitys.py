@@ -15,12 +15,13 @@ class Copper(BaseCard):
         self,
     ):
         super().__init__(
-            Cardname.Copper,
-            CardCost.ZERO,
-            CardType.TREASURECARD,
-            CardMoney.ONE,
-            CardVictory.ZERO,
-            Expansion.Dominion,
+            description="It produces $1 when played.",
+            name=Cardname.Copper,
+            price=CardCost.ZERO,
+            type=CardType.TREASURECARD,
+            money=CardMoney.ONE,
+            victory_points=CardVictory.ZERO,
+            expansion=Expansion.Dominion,
         )
 
 
@@ -29,12 +30,13 @@ class Silver(BaseCard):
         self,
     ):
         super().__init__(
-            Cardname.Silver,
-            CardCost.THREE,
-            CardType.TREASURECARD,
-            CardMoney.TWO,
-            CardVictory.ZERO,
-            Expansion.Dominion,
+            description="It produces $2 when played.",
+            name=Cardname.Silver,
+            price=CardCost.THREE,
+            type=CardType.TREASURECARD,
+            money=CardMoney.TWO,
+            victory_points=CardVictory.ZERO,
+            expansion=Expansion.Dominion,
         )
 
 
@@ -43,10 +45,11 @@ class Gold(BaseCard):
         self,
     ):
         super().__init__(
-            Cardname.Gold,
-            CardCost.SIX,
-            CardType.TREASURECARD,
-            CardMoney.THREE,
-            CardVictory.ZERO,
-            Expansion.Dominion,
+            description="It produces $3 when played.",
+            name=Cardname.Gold,
+            price=CardCost.SIX,
+            type=CardType.TREASURECARD,
+            money=CardMoney.THREE,
+            victory_points=CardVictory.ZERO,
+            expansion=Expansion.Dominion,
         )

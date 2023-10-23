@@ -1,5 +1,5 @@
 from cards.treasurecards.card_entitys import Copper
-from player.player_deck_of_cards import PlayerCardDeck
+from player.player_deck import PlayerCardDeck
 
 
 def test_draw():

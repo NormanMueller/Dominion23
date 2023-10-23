@@ -19,6 +19,7 @@ def player_with_cards(default_card, card):
 
     return player
 
+
 @when(parsers.parse("ActionPhase {default_card} is played"), target_fixture="player")
 def action_phase(default_card, player):
     if player.deck.hand_cards.player_has_action_cards() == False:

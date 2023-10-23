@@ -11,7 +11,7 @@ from cards.utils.base_card import (
 )
 from cards.actioncards.action_card import ActionCard, Draws
 from cards.victorycards.card_entitys import Estate
-from game.phase.turn import Turn
+from game.phase.start_phase import Turn
 from player.base_player import Player
 
 
@@ -29,7 +29,7 @@ def test_smithy(action_card_standard: ActionCard):
     smithy = Smithy()
     player = Player("norm", [Estate] * 3)
     # When
-    smithy(player,Turn())
+    smithy(player, Turn())
     # Then
     assert action_card_standard.DISCARDS == 0
     assert action_card_standard.DELETES == 0
