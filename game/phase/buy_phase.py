@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 
 from game.phase.base_phase import BasePhase
-from utils.exceptions import UserInputException
+from utils.exceptions import UserSkipPhaseException
 from utils.helper import phasen_decorator, player_phasen_information, user_input_handler
 
 if TYPE_CHECKING:
@@ -31,7 +31,7 @@ class BuyPhase(BasePhase):
         while self.condition_to_play() == True:
             player_phasen_information(self.player)
             card_from_field, error = user_input_handler(self.field_cards)
-            if error == UserInputException:
+            if error == UserSkipPhaseException:
                 break
 
             if self.player.available_money >= card_from_field.price:

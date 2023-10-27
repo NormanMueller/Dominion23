@@ -53,7 +53,8 @@ class Cardname(Enum):
     Smithy = "Smithy"
     Cellar = "Cellar"
     Village = "Village"
-    Milts = "Milts"
+    Milits = "Milits"
+
 
 class Expansion(Enum):
     Dominion = "Dominion"

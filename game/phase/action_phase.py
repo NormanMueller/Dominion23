@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 from attr import dataclass
 from player.base_player import Player
 
-from utils.exceptions import UserInputException
+from utils.exceptions import UserSkipPhaseException
 from utils.helper import phasen_decorator, player_phasen_information, user_input_handler
 
 
@@ -34,11 +34,10 @@ class ActionPhase(BasePhase):
     @phasen_decorator
     def start_phase(self) -> None:
         while self.condition_to_play() == True:
-            
             player_phasen_information(self.player)
-            
+
             action_card_to_play, error = user_input_handler(self.player.deck.hand_cards)
-            if error == UserInputException:
+            if error == UserSkipPhaseException:
                 break
 
             self.player.play_card(action_card_to_play)

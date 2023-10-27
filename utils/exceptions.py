@@ -4,7 +4,13 @@ import sys
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 
 
-class UserInputException(Exception):
+class UserSkipPhaseException(Exception):
+    def __init__(self, message="User want to skip"):
+        self.message = message
+        super().__init__(self.message)
+
+
+class UserInputCardValidationError(Exception):
     def __init__(self, message="User want to skip"):
         self.message = message
         super().__init__(self.message)

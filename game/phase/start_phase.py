@@ -25,7 +25,7 @@ class StartPhase:
 
     def condition_to_play():
         ...
-   
+
     def start_phase(self) -> None:
         self.player.draw(nr=NUMBER_START_CARDS)
         self.player.nr_buys = NUMBER_START_BUYS

@@ -6,7 +6,7 @@ import sys
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 
 from decks.decks import DrawCardDeck
-from utils.exceptions import UserInputException
+from utils.exceptions import UserSkipPhaseException
 from utils.helper import user_input_handler
 
 
@@ -44,7 +44,7 @@ class Player:
     def add_action(self, nr: int) -> int:
         self.nr_actions += nr
 
-    def add_buy(self, nr: int)-> int:
+    def add_buy(self, nr: int) -> int:
         self.nr_buys += nr
 
     def play_card(self, action_card) -> None:
@@ -71,7 +71,7 @@ class Player:
         iteration = 0
         while number_of_discards > iteration:
             card_user_wants_to_discard, error = user_input_handler(self.deck.hand_cards)
-            if error == UserInputException:
+            if error == UserSkipPhaseException:
                 raise
 
             self.deck.hand_cards.remove_card(card_user_wants_to_discard)

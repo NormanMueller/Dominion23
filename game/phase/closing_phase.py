@@ -18,6 +18,6 @@ class ClosingPhase:
 
     def condition_to_play():
         ...
-    
+
     def start_phase(self):
         self.player.discard_all_hand_cards()

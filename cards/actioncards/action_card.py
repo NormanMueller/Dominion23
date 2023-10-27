@@ -9,7 +9,6 @@ from typing import Literal
 from typing import TYPE_CHECKING
 
 
-
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 from cards.utils.base_card import (
     BaseCard,
@@ -60,5 +59,7 @@ class ActionCard(BaseCard):
     additional_buys: AdditionalBuys = AdditionalBuys.ZERO
 
     @abstractmethod
-    def execute(self, player: Player, opponent: Player, board: BaseExpansionField) -> None:
+    def execute(
+        self, player: Player, opponent: Player, board: BaseExpansionField
+    ) -> None:
         ...
