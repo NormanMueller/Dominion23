@@ -15,7 +15,7 @@ from cards.actioncards.card_entitys import Smithy
 @dataclass
 class BaseExpansionField(CardDeck):
     def __init__(self) -> None:
-        super().__init__(
+        super().__init__(card_list=
             [
                 Copper(),
                 Silver(),

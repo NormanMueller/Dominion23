@@ -3,8 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum, auto, IntFlag
 
+class StrEnum(str, Enum):
+    def __str__(self) -> str:
+        return self.value
 
-class CardType(Enum):
+class CardType(StrEnum):
     ACTIONCARD = "Action_Card"
     TREASURECARD = "Treasure_Card"
     VICTORYCARD = "Victory_Card"
@@ -43,7 +46,7 @@ class CardVictory(IntFlag):
     EIGHT = 8
 
 
-class Cardname(Enum):
+class Cardname(StrEnum):
     Copper = "Copper"
     Silver = "Silver"
     Gold = "Gold"
@@ -56,7 +59,7 @@ class Cardname(Enum):
     Milits = "Milits"
 
 
-class Expansion(Enum):
+class Expansion(StrEnum):
     Dominion = "Dominion"
     Intrigue = "Intrigue"
     Seaside = "Seaside"
@@ -65,7 +68,6 @@ class Expansion(Enum):
 @dataclass
 class BaseCard:
     """Base Card Image"""
-
     description: str
     name: Cardname
     price: CardCost
@@ -90,3 +92,7 @@ class BaseCard:
             return True
         else:
             return False
+
+    def __iter__(self):
+        for attr, value in self.__dict__.items():
+            yield attr, value

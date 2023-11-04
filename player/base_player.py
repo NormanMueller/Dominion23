@@ -1,6 +1,8 @@
 from __future__ import annotations
 from copy import copy
+from dataclasses import asdict
 import itertools
+import json
 import sys
 
 sys.path.append(r"c:\Users\norma\Github\Dominion2023")
@@ -17,6 +19,11 @@ from cards.utils.base_card import CardType
 if TYPE_CHECKING:
     from cards.utils.base_card import BaseCard
 
+
+class IterMixin(object):
+    def __iter__(self):
+        for attr, value in self.__dict__.iteritems():
+            yield attr, value
 
 class Player:
     def __init__(self, name: str, start_deck: List[BaseCard]) -> None:
@@ -57,7 +64,7 @@ class Player:
     def draw(self, nr: int) -> None:
         for _ in range(nr):
             try:
-                self.deck.hand_cards.add_card(next(self.deck.draw_pile.card_list))
+                self.deck.hand_cards.add_card(next(self.deck.draw_pile))
             except StopIteration:
                 self.deck.draw_pile = DrawCardDeck(self.deck.discard_pile.card_list)
                 self.deck.hand_cards.add_card(next(self.deck.draw_pile.card_list))
@@ -76,3 +83,9 @@ class Player:
 
             self.deck.hand_cards.remove_card(card_user_wants_to_discard)
             iteration += 1
+
+
+    def logger(self):
+        log_info = self.deck.logger()
+        with open('player_info.json', 'w') as f:
+            json.dump(log_info, f, ensure_ascii=False, default=lambda __o: __o.__dict__)

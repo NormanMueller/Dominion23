@@ -72,7 +72,6 @@ class Milits(ActionCard):
                 properties=MititsDiscardProperty.DISCARD_TWO,
             ),
         )
-
     def execute(self, player: Player, opponent: Player, board: BaseExpansionField):
         getattr(opponent, self.action_instructions.player_method)(
             self.action_instructions.properties

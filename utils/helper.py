@@ -1,7 +1,9 @@
-from typing import Tuple
+from __future__ import annotations
+import sys
 
-from pydantic_core import PydanticCustomError
-from cards.utils.base_card import BaseCard, Cardname
+sys.path.append(r"c:\Users\norma\Github\Dominion2023")
+from typing import TYPE_CHECKING, Tuple
+
 from decks.decks import CardDeck
 from utils.exceptions import (
     BoardErrorEmpty,
@@ -9,7 +11,8 @@ from utils.exceptions import (
     UserSkipPhaseException,
 )
 from pydantic import BaseModel, ValidationError, field_validator
-
+from cards.utils.base_card import BaseCard
+from cards.utils.base_card import  Cardname
 
 class UserInput(BaseModel):
     cardname: str
@@ -69,5 +72,6 @@ def phasen_decorator(phase):
 
 def player_phasen_information(player):
     print(
-        f"{player.name} you have actions: {player.nr_actions} and buys: {player.nr_buys} "
+        f"{player.name} you have actions: {player.nr_actions} and buys: {player.nr_buys}"
     )
+

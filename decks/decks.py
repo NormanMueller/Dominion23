@@ -1,32 +1,25 @@
-import sys
+from dataclasses import dataclass, field
+from random import shuffle
+
 from typing import List, Tuple
 from cards.utils.card_creator import CardCreator
 from decks.helper import draw_generator
 from utils.exceptions import HandErrorNoMatch
 from tabulate import tabulate
+from dataclasses_json import LetterCase, dataclass_json, config
 
-sys.path.append(r"c:\Users\norma\Github\Dominion2023")
 from cards.utils.base_card import BaseCard
 
-
+@dataclass(kw_only=True)
 class CardDeck:
-    def __init__(self, card_list: List[BaseCard]) -> None:
-        self.card_list = card_list
-
+    card_list : List[BaseCard]
     card_creator: CardCreator = CardCreator()
-
+    i:int = 0
+    
     def __iter__(self):
-        return self.RangeIterator(self.card_list)
-
-    class RangeIterator:
-        def __init__(self, card_list: List[BaseCard]):
-            self.i = 0
-            self.card_list = card_list
-
-        def __iter__(self):
             return self
-
-        def __next__(self):
+    
+    def __next__(self):
             self.i += 1
             if self.i < len(self.card_list):
                 return self.card_list[self.i]
@@ -37,9 +30,10 @@ class CardDeck:
         return True if desired_card in self.card_list else False
 
     def get_instance_of_card(self, desired_card) -> BaseCard:
-        if [card for card in self.card_list if card.name == desired_card]:
-            raise HandErrorNoMatch
-        return self.card_creator.make_instance(desired_card)
+        if [card for card in self.card_list if str(card.name) == desired_card]:
+            return self.card_creator.make_instance(desired_card)
+        
+        raise HandErrorNoMatch
 
     def remove_card(self, card: BaseCard | List[BaseCard]) -> None:
         if isinstance(card, list):
@@ -55,28 +49,22 @@ class CardDeck:
         elif isinstance(card, BaseCard):
             self.card_list.append(card)
 
+class DrawCardDeck(CardDeck):
+    def __init__(self, card_list : List[BaseCard]):
+        self.card_list = card_list
+        shuffle(self.card_list)
+
 
 class DiscardPile(CardDeck):
-    def __init__(self, card_list: List[BaseCard]) -> None:
-        super().__init__(card_list)
+    ...
 
 
-class DrawCardDeck(CardDeck):
-    def __init__(self, card_list: List[BaseCard]) -> None:
-        super().__init__(draw_generator(card_list))
-
+class InPlayCardDeck(CardDeck):
+    ...
 
 class HandCardDeck(CardDeck):
-    def __init__(self, card_list: List[BaseCard]) -> None:
-        super().__init__(card_list)
-
     def __str__(self) -> str:
         return tabulate(
             [(card.name, card.type, card.description) for card in self.card_list],
             headers=["Name", "Type", "Description"],
         )
-
-
-class InPlayCardDeck(CardDeck):
-    def __init__(self, card_list: List[BaseCard]) -> None:
-        super().__init__(card_list)

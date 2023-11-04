@@ -35,7 +35,6 @@ class ActionPhase(BasePhase):
     def start_phase(self) -> None:
         while self.condition_to_play() == True:
             player_phasen_information(self.player)
-
             action_card_to_play, error = user_input_handler(self.player.deck.hand_cards)
             if error == UserSkipPhaseException:
                 break

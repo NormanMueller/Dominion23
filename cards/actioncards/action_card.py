@@ -39,7 +39,7 @@ class AdditionalBuys(IntFlag):
     THREE = 3
 
 
-class ActionImpacts(Enum):
+class ActionImpacts(str,Enum):
     PLAYER = "PLAYER"
     OPPONENTS = "OPPONENTS"
 

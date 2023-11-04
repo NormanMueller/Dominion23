@@ -35,7 +35,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    start_cards = [Milits()] * 7 + [Estate()] * 3
+    start_cards = [Smithy()] * 7 + [Estate()] * 3
     x = Game(
         Player("Norman", start_cards),
         Player("Nico", start_cards),
